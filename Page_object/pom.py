@@ -261,13 +261,6 @@ class Ecommerce:
                     raise
             time.sleep(1)  # Wait for 1 second before retrying
 
-    def get_product(self):
-        prd_select= self.wait.until(EC.presence_of_element_located((By.XPATH, self.prd_select_xpath)))
-        prd_select.click()
-        product_name = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.prd_name_xpath))).text
-        return product_name
-        time.sleep(1)
-
     def get_image_element(self):
         image_field=self.wait.until(EC.visibility_of_element_located((By.XPATH,image_xpath)))
         image_value=image_field.get_attribute("src")
@@ -313,11 +306,6 @@ class Ecommerce:
                                                                str(quantity_count)))  # Wait for the value to be updated
         actual_quantity_str = quantity_field.get_attribute("value")  # Get the updated value
         return actual_quantity_str
-
-    # def get_address_tag(self):
-    #     address_field=self.wait.until(EC.visibility_of_element_located((By.XPATH,address_desc_xpath)))
-    #     address_value=address_field.text
-    #     return address_value
 
     def get_wishlist(self):
         try:
@@ -390,3 +378,5 @@ class Ecommerce:
     def get_checkout(self):
         checkout_field = self.wait.until(EC.element_to_be_clickable((By.XPATH, checkout_xpath)))
         checkout_field.click()
+
+
